@@ -1,0 +1,111 @@
+[user]
+  name = Brandon Mathis
+  email = brandon@imathis.com
+[color]
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = blue
+  untracked = cyan
+[alias]
+  a    = add
+  aa   = !git add -A && git status
+  b    = branch
+  # show all branches, even across remotes
+  branches = branch -a --color -v
+  # remove all local branches included in the current branch
+  cleanup = !sh -c 'git branch --merged | grep -E "^[^*]" --exclude "^\\s*master" | xargs -n1 git branch -d'
+  c    = commit
+  ca   = commit -a
+  co = checkout
+  pl   = pull
+  p    = push
+  plr  = pull --rebase
+  ctags = !.git/hooks/ctags
+  # Show the diff between the latest commit and the current state
+  d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
+  # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+  # Diff
+  df = diff
+  # Get short SHA-1 for object
+  hash = rev-parse --short HEAD
+  lc = log ORIG_HEAD.. --stat --no-merges
+  # just for fun
+  l33t = !"git shortlog | l33t"
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  ls = ls-files
+  kd = difftool -y -t Kaleidoscope
+  # depends on hub
+  mypulls = browse -- pulls/pengwynn
+  # Find FIXME, TODO, etc, optimized by @x3ro https://gist.github.com/3908985
+  n = !"f() { git ls-files $1 | xargs notes | awk -F: '{ print $1,$2; print $3,$4; print $5}' | grcat conf.notes | less -r;  }; f"
+  pullm = !"git pull origin master"
+  pushm = !"git push origin master"
+  next = !git add -A && git rebase --continue
+  rb = rebase
+  rbc = rebase --continue
+  # Interactive rebase with the selected number of latest commits
+  reb = "!r() { git rebase -i HEAD~$1; }; r"tags = tag -l
+  # track a remote branch
+  track = checkout -t
+  st = status
+  # update all submodules
+  subs = submodule foreach git pull origin master
+  # clean up fully merged branches
+  sweep = !git-sweep
+  # remove a file from the index
+  unstage = reset HEAD --
+  up = pull --rebase
+  wdiff = diff --color-words
+
+[core]
+  excludesfile = /opt/boxen/config/git/gitignore
+  excludesfile = /opt/boxen/config/git/gitignore
+
+[init]
+  templatedir = ~/.git_template
+
+[push]
+  default = upstream
+
+[hub]
+  protocol = https
+
+[repack]
+  usedeltabaseoffset = true
+[apply]
+  whitespace = nowarn
+[github]
+  user = imathis
+  token = 151595bc153bf5d0adcb455365f4319d
+
+[merge]
+  tool = Kaleidoscope
+
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+  tool = Kaleidoscope
+[difftool "macvim"]
+  cmd = /usr/local/Cellar/macvim/7.3-63/MacVim.app/Contents/MacOS/Vim -g -dO -f $LOCAL $REMOTE
+[difftool]
+  prompt = false
+[diff]
+  tool = vimdiff
+[ghi]
+  token = 9deba2d911b9c715e37eeb449a941531155dab75
+  
+
+# vim: ft=gitconfig

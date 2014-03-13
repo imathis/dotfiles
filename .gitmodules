@@ -34,3 +34,9 @@
 [submodule "vim/vim.symlink/bundle/vim-ctrlp"]
 	path = vim/vim.symlink/bundle/vim-ctrlp
 	url = git@github.com:kien/ctrlp.vim.git
+[submodule "vim/vim.symlink/bundle/vim-liquid"]
+	path = vim/vim.symlink/bundle/vim-liquid
+	url = git@github.com:tpope/vim-liquid.git
+[submodule "vim/vim.symlink/bundle/vim-command-t"]
+	path = vim/vim.symlink/bundle/vim-command-t
+	url = git://git.wincent.com/command-t.git

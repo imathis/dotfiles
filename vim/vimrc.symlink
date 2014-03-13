@@ -35,7 +35,7 @@ set t_Co=256
 " =========
 
 set nocompatible
-let mapleader = ","
+let mapleader = '\'
 set history=1000                              " lots of command line history
 set viminfo='10,\"100,:20,%,n~/.viminfo       " remember certain things when we exit
 set autoread                                  " reload files changed outside of Vim
@@ -257,8 +257,8 @@ set spelllang=en_us
 nnoremap <leader><space> :%s/\s\+$//e<CR>
 
 " Edit vimrc
-nmap <leader>0 :sp ~/.dotfiles/vim/vimrc.symlink<CR><C-W>_
-nmap <leader>) :source ~/.dotfiles/vim/vimrc.symlink<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+nmap <leader><leader>v :sp ~/.dotfiles/vim/vimrc.symlink<CR><C-W>_
+nmap <leader><leader>V :source ~/.dotfiles/vim/vimrc.symlink<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " Edit Gemfile
 "nnoremap <leader><leader>g :e Gemfile<cr>
 
@@ -354,8 +354,8 @@ set statusline+=%l/%L:%v                        " Set <line number>/<total lines
 set statusline+=\                               " Set ending space
 
 " Plugin overrides
-source ~/.vim/autocmd.vim
-"source ~/.vim/common.vim
+"source ~/.vim/autocmd.vim
 source ~/.vim/format.vim
-"source ~/.vim/plugin/settings/command-t.vim
+"source ~/.vim/common.vim
+source ~/.vim/plugin/settings/command-t.vim
 "source ~/.vim/plugin/settings/unite.vim
